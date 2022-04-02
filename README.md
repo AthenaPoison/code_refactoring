@@ -1,6 +1,6 @@
 # Bad Smells
 
-1. Duplication code
+1. Duplication code: FootballPlayer.java detailing creation method and FootballPlayer2.java for chain constructors
 2. Long Methods
 3. Complex Conditional Statements
 4. Primitive Obsession
