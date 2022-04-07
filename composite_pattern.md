@@ -1,7 +1,7 @@
 # Replacing tree structure of primitives with composite pattern
 
 When you model a tree structure, it is either a list of info as primitives and then searched through for what you want or onjects that represent each level of the tree with the composite pattern.
-
+~~~Java
 //this is an interface for an abstract class. Abstract is used to not force subclasses to create methods inside of it
 
 public abstract class ProductComponent{
@@ -16,7 +16,8 @@ public abstract class ProductComponent{
     //this is the one we want implemented in all subclasses
     abstract void displayProductInfo();
 }
-
+~~~
+~~~Java
 //ProductGroup.java
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -60,9 +61,9 @@ public class ProductGroup extends ProducComponent{
         System.out.println();
     }
 }
-
+~~~
 This will represent a leaf in the product group
-
+~~~Java
 //Product.java
 public class Produc extends ProductComponent{
     private String productName;
@@ -90,7 +91,8 @@ public class Produc extends ProductComponent{
         System.out.println(getProductName() + " $"+getProductPrice());
     }
 }
-
+~~~
+~~~Java
 //Test with ProductSystem.java
 public class ProductSystem{
     public static void main(String[] args){
@@ -114,3 +116,4 @@ public class ProductSystem{
         everyPorduct.displayProductInfo();
     }
 }
+~~~
