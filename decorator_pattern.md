@@ -5,7 +5,7 @@ When new features are needed , it is a bad idea to add new code to older classes
 The decorator pattern instead places each special case behavior (Embellishments) into its own classes.
 
 By using the decorator pattern we will also satisfy another SOLID principle: the interface segregation principle, by using many specific interfaces rather than one general purpose interface.
-
+~~~Java
 //Bad way to add functionality
 class CalculateHairCut{
     enum HairCutOptions{ BASIC_CUT, PERM, HAIR_FROSTING};
@@ -34,7 +34,8 @@ class CalculateHairCut{
         }
     }
 }
-
+~~~
+~~~Java
 //The decorator pattern method
 public interface HairCut{
     public String getDescription();
@@ -58,7 +59,8 @@ abstract class HairCutDecorator implements HairCut{
         return hairCut.getCost();
     }
 }
-
+~~~
+~~~Java
 //This represents the basic HairCut that was originally used all of the time before the upgrade
 class RegularHairCut implements HairCut{
     public String getDescription(){
@@ -68,7 +70,8 @@ class RegularHairCut implements HairCut{
         return 10.00;
     }
 }
-
+~~~
+~~~Java
 //With the decorator, we can easily add additional features and calculations without changing the code that already exists
 class Perm extends HairCutDecorator{
     Perm(HairCur hairCut){
@@ -83,7 +86,8 @@ class Perm extends HairCutDecorator{
         return hairCut.getCost() + 75.00;
     }
 }
-
+~~~
+~~~Java
 class TestHairCut{
     public static void main(String[] args){
         HairCut perAndCut = new Perm(new RegularHairCut());
@@ -92,3 +96,4 @@ class TestHairCut{
         System.out.println("Price: $" + permAndCut.getCost());
     }
 }
+~~~
