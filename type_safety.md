@@ -1,7 +1,7 @@
 # Type Safety
 Aim: Eliminate all operations on values that are not of the appropirate datatype by protecting the program from bad input
 How? By replacing primitive datatypes with a class
-
+~~~Java
 //bad code
 public class ATMAccessBad{
     private String state;
@@ -25,7 +25,7 @@ public class ATMAccessBad{
             state = DENIED;
         } 
     }
-
+    
     public void verifyWithdrawlAmount(double withdrawaRequest){
         if (CARD_BALANCE > withdrawalRequest){
             state = VALID_CASH_REQUEST;
@@ -45,13 +45,13 @@ public class ATMAccessBad{
         System.out.println(user.state);
     }
 }
-
+~~~
 Above is an example of bad code. Why? Type safety is important. Notice that String state is not encapsulated, this means that the program can accept bad inputs. 
 
 What we want to do to improve the code above is to eliminate all operations on values that are not of the appropriate data type.
 
 We can do this by replacing primitive types with classes
-
+~~~Java
 //refactored code
 class ATMAccessGood{
     //define a type safe field
@@ -115,7 +115,8 @@ class ATMAccessGood{
         System.out.println(user.getState());
     }
 }
-
+~~~
+~~~Java
 //represents the state of a ATMAccess object
 class ATMCardState{
     private final String name;
@@ -139,3 +140,4 @@ class ATMCardState{
     public final static int PIN_NUMBER = 1234;
     public final static double CARD_BALANCE = 1000.00;
 }
+~~~
