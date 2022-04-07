@@ -1,5 +1,5 @@
 # Building Composites Using Builder Pattern
-
+~~~Java
 //just code i guess
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +24,8 @@ public class Item{
         //create Item HashMap that stores Item info
         itemInfoHM = new HashMap<String, String>(20);
     }
-
+~~~
+~~~Java
     //Used to add children nodes
     public void add(Item childNote){ children.add(childNode);}
     public void addItemInformation(String infoName, String info){
@@ -49,7 +50,8 @@ public class Item{
         }
         return itemInformation;
     }
-
+~~~
+~~~Java
     public String displayProductInfo(){
         String productInfo = "";
         //cycle through every key, value pair and return them
@@ -95,7 +97,8 @@ public class Item{
         System.out.println("\n" + products.getItemByName("Cereal"));
     }
 }
-
+~~~
+~~~Java
 class ItemBuilder{
     //holds all of the items created
     ArrayList<Item> items = new ArrayList<Item>();
@@ -201,3 +204,4 @@ class ItemBuilder{
         return itemToReturn;
     }
 }
+~~~
