@@ -1,7 +1,7 @@
 # Replacing Constructors with Factory Methods
 
 Example 1: The code below isa factory that is able to dynamically create subclasses based off of information being passed into it.
-
+~~~Java
 private abstract class Customer2{
     private String custRating;
     static final int PREMIER = 2;
@@ -21,19 +21,22 @@ private abstract class Customer2{
         System.out.print("Customer Rating: " + goodCustomer.getCutomerRating());
     }
 }
-
+~~~
+~~~Java
 class Premier extends Customer2{
     Premier(){
         setCustRating("Premier Customer");
     }
 }
-
+~~~
+~~~Java
 class Deadbeat extends Customer2{
     Deadbeat(){
         setCustRating("Deadbeat Customer");
     }
 }
-
+~~~
+~~~Java
 class CustomerFactory{
     public Customer2 getCustomer(int custType){
         switch(custType){
@@ -46,9 +49,9 @@ class CustomerFactory{
         }
     }
 }
-
+~~~
 Alternatively, we can get rid of the conditional statments:
-
+~~~Java
 class CustomerFactory{
     public Customer2 getCustomer(String custName){
         try{
@@ -59,17 +62,17 @@ class CustomerFactory{
         }
     }
 }
-
+~~~
 and change the main method accordingly.
-
+~~~Java
 public static void main(String[] args){
     //...
     Customer2 goodCustomer = customerFactory.getCustomer("Premier");
 }
-
+~~~
 # Singleton pattern
 A factory that creates singletons(restricts a class to one instance)
-
+~~~Java
 //Athelete.java
 import java.lanf.reflect.Method;
 
@@ -85,7 +88,8 @@ public class Athlete{
         return null;
     }
 }
-
+~~~
+~~~Java
 class GoldWinner extends Athlete{
     //Set to null to signify that an instance f type GoldWinner doesn't exist
     private static GoldWinner goldAthlete = null;
@@ -131,7 +135,8 @@ class BronzeWinner extends Athlete{
         return bronzeAthlete;
     }
 }
-
+~~~
+~~~Java
 class MedalFactory{
     public Athlete getMedal(String medalType, String athleteName){
         try{
@@ -157,7 +162,8 @@ class MedalFactory{
         }
     }
 }
-
+~~~
+~~~Java
 class TestMedalWinner{
     public static void main(String[] args){
         MedalFactory medalFactory = new MedalFactory();
@@ -175,7 +181,7 @@ class TestMedalWinner{
         System.out.println("Gold Medal Winner: " + goldWinner2.getAthleteName());
     }
 }
-
+~~~
 Results: 
     Gold Medal Winner: Dave Thomas
     Silver Medal Winner: Mac McDonald
