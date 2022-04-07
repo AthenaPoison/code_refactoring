@@ -1,6 +1,7 @@
 # Descriptive variables for understandable code
 Do this for a less stressful future
 
+~~~Java
 // Product.java
 public class Product{
     private String name = "";
@@ -35,11 +36,11 @@ public class Product{
         return (quantity * price) + (quantity * shippingCost) - discount;
     }
 }
-
+~~~
 Study the getTotalCost method in the code above. The conditional statements read as follows: if the quantity of an object is more than 50 and costs more than 500, than the discount is at 10%. If it's more than 10 and costs more than 100, discount is 7% and so on. 
 
 The expressions are a little hard to read and can be made more understandable by saving them into temporary variables that can be referred to.
-
+~~~Java
 //Using variables 
 public double getTotalCost(){
     double quantityDiscount = 0.0;
@@ -59,7 +60,7 @@ public double getTotalCost(){
     double discount = ((quantity -1) * quantityDiscount) * price;
     return (quantity * price) + (quantity * shippingCost) - discount;
 }
-
+~~~
 Another application for temporary variables is to use them for complicated calculations that cannot be extracted into methods.
 
 //Store.java - original
