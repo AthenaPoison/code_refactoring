@@ -1,6 +1,6 @@
 # Command Pattern
 3.  Has an invoker that stores the 
-
+~~~Java
 //common way-wrong way to implement command pattern
 //also example of when to use command pattern
 class Customer{
@@ -37,9 +37,9 @@ class Customer{
         billSmith.returnFinalBill();
     }
 }
-
+~~~
 The first part of the command pattern is the interface. From the example above, this interface will be used to represent the different types of BillPayers and the methods used by them
-
+~~~Java
 import java.util.ArrayList;
 public interface BillPayer{
     public void calculateBill(double amountDue);
@@ -70,9 +70,9 @@ class ManUnder60 implements BillPayer{
         System.out.println("Bill Amount for Man Under 60: " + amountDue;
     }
 }
-
+~~~
 This will call the executeCalculateBill method based on the BillPayer type
-
+~~~Java
 class Waiter implements Command{
     BillPayer thePayer;
 
@@ -84,10 +84,10 @@ class Waiter implements Command{
         thePayer.calculateBill(amountDue);
     }
 }
-
+~~~
 The invoker: Uses returnFinalBill and executes the right executeCalculateBill() based on the object stored in the Command. 
 The Invoker can accept numerous command tyeps and then execute different methods based on the command type,
-
+~~~Java
 class CashRegister{
     Command theCommand;
     CashRegister(Command newCommand){
@@ -98,10 +98,10 @@ class CashRegister{
         theCommand.executeCalculateBill(amountDue);
     }
 }
-
+~~~
 Returns the right BillPayer object based on the method called
 If a new BillPayer is added, just update this and create a new BillPayer class
-
+~~~Java
 class CustomerTypePicker{
     public static BillPayer getWomanOver60{
         return new WomanOver60();
@@ -135,9 +135,9 @@ class UseCashRegister{
         calculateBill.returnFinalBill(12.00);
     }
 }
-
+~~~
 Group BillPayers into an arrayList so now you can use these billpayers as simple commands
-
+~~~Java
 class CustomerGroup{
     ArrayList<BillPayer> customers;
 
@@ -164,3 +164,4 @@ class UseCashRegister{
         custGroup.get(0).calculateBill(12.00);
     }
 }
+~~~
