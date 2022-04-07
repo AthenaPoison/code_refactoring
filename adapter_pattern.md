@@ -1,7 +1,7 @@
 # Adapter Pattern
 
 This allows us to create a new classs wihtout disturbing any other code. The adapters make it easier to swap codes at runtime and allows for flexible use of method names, so we can choose names that makes sense to us.
-
+~~~Java
 //original code
 public class EnemyShip{
     protected String name;
@@ -54,9 +54,9 @@ class GalaxianPrime extends EnemyShip{
         System.out.println(name + " turns on forcefield and moves " + spacesMovedPerTurn+ " spaces");
     }
 }
-
+~~~
 Now we implement the adapter pattern which starts with an interface. This makes sure that new classes are compatible with the adapter
-
+~~~Java
 //refactored code
 interface Enemy{
     public void moveShip();
@@ -75,10 +75,9 @@ class Galax implements Enemy{
         System.out.println("Galax does " + attackPower + " damage");
     }
 }
-
+~~~
 This is the adaptee. The adapter will call the right methods here when they are called on the Enemy interface
-
-//refactored code
+~~~Java
 class GalaxPrime{
     protected String name = "Galaxian Prime";
     private int attacPower = 15;
@@ -100,11 +99,10 @@ class GalaxPrime{
         System.out.println(name + " fires phasers for " + attackPower + " damage");
     }
 }
-
+~~~
 The adapter can provide completely different actions for the methods implemented
 The adapter contains an object of the same type as adaptee, so all calls sent to the Enemy are sent to methods of the adaptee
-
-//refactored code
+~~~Java
 class EnemyAdapter implements Enemy{
     GalaxPrime galaxPrime;
     public EnemyAdapter(GalaxPrime galaxPrime){
@@ -122,7 +120,8 @@ class EnemyAdapter implements Enemy{
         galaxPrime.firePhasers();
     }
 }
-
+~~~
+~~~Java
 //Test the code
 class TestEnemyAdapter{
     public static void main(String[] args){
@@ -139,3 +138,4 @@ class TestEnemyAdapter{
         galaxPrime.makeShipAttack();
     }
 }
+~~~

@@ -1,6 +1,7 @@
 # Descriptive variables for understandable code
 Do this for a less stressful future
 
+~~~Java
 // Product.java
 public class Product{
     private String name = "";
@@ -35,11 +36,11 @@ public class Product{
         return (quantity * price) + (quantity * shippingCost) - discount;
     }
 }
-
+~~~
 Study the getTotalCost method in the code above. The conditional statements read as follows: if the quantity of an object is more than 50 and costs more than 500, than the discount is at 10%. If it's more than 10 and costs more than 100, discount is 7% and so on. 
 
 The expressions are a little hard to read and can be made more understandable by saving them into temporary variables that can be referred to.
-
+~~~Java
 //Using variables 
 public double getTotalCost(){
     double quantityDiscount = 0.0;
@@ -59,9 +60,10 @@ public double getTotalCost(){
     double discount = ((quantity -1) * quantityDiscount) * price;
     return (quantity * price) + (quantity * shippingCost) - discount;
 }
-
+~~~
 Another application for temporary variables is to use them for complicated calculations that cannot be extracted into methods.
 
+~~~Java
 //Store.java - original
 import java.util.ArrayList;
 public class Store{
@@ -85,9 +87,9 @@ public class Store{
         cornerStore.getCostOfProducts();
     }
 }
-
+~~~
 We can refactor the code above to be shorter and more understandable
-
+~~~Java
 //Store.java -refactored; getCostOfProduct
 public void getCostOfProducts(){
     for (Product product: theProducts){
@@ -103,11 +105,11 @@ public void getCostOfProducts(){
         System.out.println("Savings per product " + (costWithoutDiscount - costWithDiscount) + "\n");
     }
 }
-
+~~~
 # Do not assign many values to a temp
 
 Things can get confussing very quickly. 
-
+~~~Java
 //bad code 
 double temp = totalCost/numberOfProducts; //Individual Product Cost
 
@@ -122,9 +124,9 @@ public double getTotPrice(double quantity, double price, doubel shippingCost, do
     price = price * quantity;
     return price - discount;
 }
-
+~~~
 Instead use more descriptive variable names
-
+~~~Java
 //good code for both examples above
 double indivProductCost = totalCost/numberOfProducts;
 double prodCostAndShipping = indivProductCost + shipping;
@@ -135,3 +137,4 @@ public double getTotPrice (doube quantity, double price, double shippingCost, do
     double totalProdCostAndShipping = prodCostAndShipping * quantity;
     return totalProdCostAndShipping - discount;
 }
+~~~
