@@ -1,5 +1,5 @@
 # Extracting Methods, Fields, Classes
-
+~~~Java
 //original code
 public class Customer{
     private String firstName = "";
@@ -62,9 +62,9 @@ public class Customer{
         this.birthDay = birthDay;
     }
 }
-
+~~~
 The code above shows the class getting too big. But on closer examination, some of the information can be extracted into a separate class such as:
-
+~~~Java
 class Address{
     private String street = "";
     private String city = "";
@@ -95,7 +95,8 @@ class Address{
     public void setPostalCode(int postalCode) {
         this.postalCode = postalCode;
     }
-
+~~~
+~~~Java
     public Address(String street, String city, String state, int postalCode){
         this.street = street;
         this.city = city;
@@ -103,8 +104,9 @@ class Address{
         this.postalCode = postalCode;
     }
 }
-
+~~~
 //And change Customer class accordingly
+~~~Java
 public class Customer{
     //... remove street, city, state, postalCode
     private Address address = null;
@@ -116,9 +118,9 @@ public class Customer{
         //...
     }
 }
-
+~~~
 Functionally, the code works the same as before..
-
+~~~Java
 //To test
 public static void main(String[] args){
     Address sallySmithAddress = new Address("123 Main St", "Perry", "Iowa", 42343);
@@ -127,9 +129,9 @@ public static void main(String[] args){
 
     System.out.println("Customer name: " + sallySmith.getFirstName() + " " + sallySmith.getLastName());
 }
-
+~~~
 However the code can be hard to read due to all the accessor methods as seen in the print functions. One method to prevent this is to define string methods in our classes such as:
-
+~~~Java
 class Address{
     //same code above
 
@@ -137,18 +139,18 @@ class Address{
         return getStreet() + " " + getCity()+ " " getState() + " " + getPostalCode();
     }
 }
-
+~~~
 Which can be applied to the main method:
-
+~~~Java
 public static void main(String[] args){
     //same code
 
     System.out.println("Custoemr address: " + sallySmith.address);
 }
-
+~~~
 # Custom objects
 Early in development many fields are represented as primitives or strings. However custom objects might make more sense later on in development. For example in the customer class above, birthday would make more sense as an object class than a string
-
+~~~Java
 //before
 public class Customer{
 //...
@@ -156,7 +158,8 @@ public class Customer{
 
 //...
 }
-
+~~~
+~~~Java
 //after 
 public class Customer{
     //...
@@ -194,9 +197,9 @@ class Birthday{
         this.year = year;
     }
 }
-
+~~~
 Custom objects have their advantges. You can implement string methods in the classes and return the individual components of the class rather than the whole (ie: date, month year rather than birthday)
-
+~~~Java
 class Birthday{
     //...
     public String getBirthDate(){
@@ -207,3 +210,4 @@ class Birthday{
         return getDay() + " / " getMonth() + " / " getYear();
     }
 }
+~~~
