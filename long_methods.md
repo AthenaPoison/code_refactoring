@@ -1,7 +1,7 @@
 # Extrac Methods
 
 Extracting methods are used to make code as readable as possible. When methods become too long, readability might reduce. In order to combat this, we can turn code fragments into methods with descriptive names.
-
+~~~Java
 //we're gonna need a lot of footballplayer classes
 public class FootballPlayer{
     private String name = "";
@@ -20,7 +20,8 @@ public class FootballPlayer{
         this.fortyYardDashTimes = fortyYardDashTimes;
     }
 }
-
+~~~
+~~~Java
 //main class
 import java.util.ArrayList;
 public class FootballPlayer40YardDashInfo{
@@ -55,9 +56,9 @@ public class FootballPlayer40YardDashInfo{
         }
     }
 }
-
+~~~
 In the example above, the printPlayerInfo method is quite long and certain parts perform different functions. For easier readability and understanding, we can extract these parts into separate methods with separate names.
-
+~~~Java
 //using extraction
 public void printPlayerInfo(){
     printTitles();
@@ -91,18 +92,18 @@ public void printPlayerWith40Avg(){
 public static double getAvgDashTimes(double totalDashTimes, int numberDashTimes){
     return totalDashTimes / numberDashTimes;
 }
-
+~~~
 # When not to extract methods
 
 If the code is clear, extracting is not needed. Consider the code below:
-
+~~~Java
 //without extraction
 public static void main(String[] args){
     String inTop15 = (avg40YdTime < 4.41) ? " *Top 15\n" : "\n";
 }
-
+~~~
 and compare it to:
-
+~~~Java
 // with extraction
 public static void main(String[] args){
     String inTop15 = checkIfInTop15(avg40YdTime) ? " *Top 15\n" : "\n"
@@ -110,13 +111,13 @@ public static void main(String[] args){
 public static boolean checkIfInTop15(double avg40YdTime){
     return avg40YdTime < 4.41;
 }
-
+~~~
 which uses extraction. In this case, the first code reads simpler than the second. When it comes to conditionals in expressions, it might be better to leave it in one code instead of extracting it for better understandability.
 
 # Temps
 
 Temps are used once and doesn't add to the understanding of the code. Consider the code below:
-
+~~~Java
 //original
 public static void main(String[] args){
     double dashTime = 4.50;
@@ -127,18 +128,18 @@ public static void main(String[] args){
 
     System.out.println("That was a " + dashGrade + " time");
 }
-
+~~~
 The variable avg40YDash is a temp used to hold the value of an expression. Since it is only used once, we can directly call on the expression holding the value instead of storing it in a temp
-
+~~~Java
 //refactored
 public static void main(String[] args){
     double dashTime = 4.50;
     String dashGrade = ((dashTime <= getAvgDashTime()) ? "Good" : "Bad");
     System.out.println("That was a " + dashGrade + " time");
 }
-
+~~~
 Replacing a temp variable with a query is also something to consider if temp is only used once and storing the value of an expression. While it does not make the code less understandable, it does have the advantage of being able to bring the expression elsewhere, reducing repeated code and overall understandability of the code.
-
+~~~Java
 //original
 public static void main(String[] args){
     double avgDashTime = totalDashTime / totalDashes;
@@ -147,7 +148,8 @@ public static void main(String[] args){
         System.out.println("Average Time");
     }
 }
-
+~~~
+~~~Java
 //refactored 
 public static void main(String[] args){
     if (avgDashTime() > 4.41){
@@ -157,3 +159,4 @@ public static void main(String[] args){
 public static double avgDashTime(){
     return totalDashTime / totalDashes;
 }
+~~~
