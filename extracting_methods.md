@@ -3,7 +3,7 @@
 This code further refactors the code from composite_builder.md
 
 The code below is an accumulation method which accumulates information into itemInformation. In this document, we split this big method into smaller methods. A collecting parameter, passed from one method to another, will be used instead to collect the required information.
-
+~~~Java
 //original code
 public String toString(){
     String itemInformation = "\n" + itemName + " ";
@@ -19,7 +19,8 @@ public String toString(){
     }
     return itemInformation;
 }
-
+~~~
+~~~Java
 //refactored code
 public String toString(){
     StringBuffer itemInfo = new StringBuffer();
@@ -47,4 +48,4 @@ private void addChildrenInformation(StringBuffer itemInfo){
         itemInfo.append(node.toString());
     }
 }
-
+~~~
