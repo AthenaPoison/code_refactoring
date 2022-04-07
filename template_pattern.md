@@ -3,7 +3,7 @@
 The template pattern is part of generalization. It transforms specific purpose code into general purpose code which in doing so, simplifies and removes duplicate code
 
 You apply this pattern when Objecs perform similar steps in the same order and it allows subclasses to override the behavior that varies
-
+~~~Java
 //original code
 public class Hamburger{
     private boolean customerWantsCondiments = true;
@@ -23,7 +23,8 @@ public class Hamburger{
         wrapSandwich();
     }
 }
-
+~~~
+~~~Java
 public class VeggieSub.java{
     //this class will have the same methods as Hamburger above with the only difference being whether meat is added or not
 
@@ -38,9 +39,9 @@ public class VeggieSub.java{
         wrapSandwich();
     }
 }
-
+~~~
 This is where the template method comes in.
-
+~~~Java
 //refactored code:
 public abstract class Sandwich(){
     final void makeSandwich(){
@@ -77,10 +78,10 @@ public abstract class Sandwich(){
     boolean customerWantsMeat(){return true;}
     boolean customerWantsCondiments(){return true;}
 }
-
+~~~
 And here is what the Hamburger and VeggieSub will look like in the template method.
-
-public class Hamburget extends Sandwich{
+~~~Java
+public class Hamburger extends Sandwich{
     @Override
     void addMeat(){
         System.out.println("It's a chicken patty");
@@ -104,7 +105,8 @@ public class VeggieSub extends Sandwich{
         System.out.println("Added speacial sauce");
     }
 }
-
+~~~
+~~~Java
 //test code using Cook.java
 public class Cook{
     public static void main(String[] args){
@@ -116,3 +118,4 @@ public class Cook{
         customer2.makeSandwich();
     }
 }
+~~~
