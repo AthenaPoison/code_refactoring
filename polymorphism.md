@@ -1,7 +1,7 @@
 # Simplifying Conditionals and Replacing them with Polymorphism
 
 Example 1: Simplifying Conditionals
-
+~~~Java
 //original code
 public class TurnConditionalsIntoMethods{
     public static void main(String[] args){
@@ -37,7 +37,7 @@ public class TurnConditionalsIntoMethods{
         }
     }
 }
-
+~~~
 What the conditionals in the code mean:
     bag weigh < 50 lbs and there is 1 bag charge $25
     bag weigh < 50 lbs and htere is 2 bag charge $35
@@ -45,7 +45,7 @@ What the conditionals in the code mean:
     bag weigh between 50 to 70 lbs charge $100 if first bag and $150 for each additional bag
 
 We simplify this conditional statement into methods to make it more readable.
-
+~~~Java
 public class TurnConditionalIntoMethods{
     static int bagOver7-lbs(){
         return 200;
@@ -71,9 +71,9 @@ public class TurnConditionalIntoMethods{
         System.out.println("Bag Fees: $" + bagFees);
     }
 }
-
+~~~
 The above solution operates on the assumption that every option is just as likely to occur however in proper coding if and else statements should not be used if things are not just as likely to occur. Instead, something called a "guard clause" should be used.
-
+~~~Java
 //continuing from the code above: edit
 public static boud main(String[] args){
     bagFees = 0;
@@ -86,9 +86,9 @@ public static boud main(String[] args){
     }
     System.out.println("Bag Fees: $" + bagFees);
 }
-
+~~~
 # Example 2: Replace Conditionals with Polymorphism
-
+~~~Java
 //without polymorphism
 public class ReplaceConditionalWithPoly{
     public static void main(String[] args){
@@ -112,9 +112,9 @@ public class ReplaceConditionalWithPoly{
         }
     }
 }
-
+~~~
 To make the code more dynamic:
-
+~~~Java
 class Animal{
     private String sound = "";
     
@@ -143,8 +143,10 @@ Class Cat extends Animal{
         super(sound);
     }
 }
-
+~~~
+~~~Java
 //in public void main
 Animal rex = new Dog("Woof");
 Animal sophie = new Cat("Meow");
 System.out.println(sophie.getSound());
+~~~
