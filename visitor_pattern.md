@@ -7,7 +7,7 @@ The Problem:
 3. Each employee receives a bonus based off of different criterias
 4. Use the visitor pattern
 5. Employee classes can only be added to, and nothing can be changed
-
+~~~Java
 //SalesTrainee.java
 public class SalesTrainee implements Visitable{
     private int sickDays;
@@ -32,7 +32,8 @@ public class SalesTrainee implements Visitable{
     public double getSalary(){ return salary;}
     public void setSalary(double salary){ this.salary = salary;}
 }
-
+~~~
+~~~Java
 //Salesman.java
 public class Salesman implements Visitable{
     private double totalSalesAmount;
@@ -60,7 +61,8 @@ public class Salesman implements Visitable{
         this.newCustomers = newCustomers;
     }
 }
-
+~~~
+~~~Java
 //Boss.java
 public class Boss implements Visitable{
     private double totalSalesAmount;
@@ -96,12 +98,12 @@ public class Boss implements Visitable{
         this.officeExpenses = officeExpenses;
     }
 }
-
+~~~
+Allows the Visitor to pass in an object so the right calculations are done depending on the object type
+accept() is an each employee object. Those employee objects then pass an object of their specific type to a concrete visitor.
+The concrete visitors contain a method named visit that is overloaded to handle each of the employee types and can then perform different calculations based on the employee type
+~~~Java
 //Visitable.java
-//Allows the Visitor to pass in an object so the right calculations are done depending on the object type
-/*accept() is an each employee object. Those employee objects then pass an object of their specific type to a concrete visitor.
-The concrete visitors contain a method named visit that is overloaded to handle each of the employee types and can then perform different calculations based on the employee type */
-
 interface visitable{
     public double accept(Visitor visitor);
 }
@@ -145,7 +147,8 @@ public class YearlyBonusVisitor implements Visitor{
         return yearlyBonusAmount;
     }
 }
-
+~~~
+~~~Java
 //QuarterlyBonusVisitor.java
 public class QuarterlyBonusVisitor implements Visitor{
     public double visit(SalesTrainee trainee){
@@ -178,7 +181,8 @@ public class QuarterlyBonusVisitor implements Visitor{
         return quarterlyBonusAmount;
     }
 }
-
+~~~
+~~~Java
 //TestBonusCalculator.java
 public class TestBonusCalculator{
     public static void main(String[] args){
@@ -210,3 +214,4 @@ public class TestBonusCalculator{
         System.out.println(rossBoss.accept(quarterlyBonusCalculator));
     }
 }
+~~~
