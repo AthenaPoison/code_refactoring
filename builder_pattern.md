@@ -5,7 +5,7 @@ Steps to implement:
 1. Define an object class of a specific type
 2. Create an abstract class that contains all the methods that each class of type object must implement
 3. A director then initializes the specified class type and provides it
-
+~~~Java
 //example code: Sandwich.java <- specific type of object
 public class Sandwich{
     private String bread = "";
@@ -43,9 +43,9 @@ public class Sandwich{
         return getBread() + " " + getVegetables() + " " + getMeat() + " " + getCheese() + " " + getCondiments();
     }
 }
-
+~~~
 Below will be the builder abstract class. It defines all the methods that each sandwich object must contain.
-
+~~~Java
 abstract class SandwichBuilder{
     Sandwich sandwich;
 
@@ -86,7 +86,8 @@ class BLTBuilder extends SandwichBuilder{
         sandwich.setBread("mayo");
     }
 }
-
+~~~
+~~~Java
 //This is the director which assigns the type of sandwich to build and then calls all of the initialization methods
 class sandwichArtist{
     private SandwichBuilder sandwichBuilder;
@@ -107,7 +108,8 @@ class sandwichArtist{
         sandwichBuilder.buildCondiments();
     }
 }
-
+~~~
+~~~Java
 //To test the code
 class TestBuilder{
     public static void main(String[] args){
@@ -127,3 +129,4 @@ class TestBuilder{
         System.out.println(bltSandwich);
     }
 }
+~~~
